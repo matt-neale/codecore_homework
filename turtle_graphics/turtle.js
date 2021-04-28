@@ -4,63 +4,83 @@ class Turtle {
     this.y = y;
     this.direction = "east";
     this.position = [[x, y]];
+    this.grid = [];
+    this.xMax = 0;
+    this.yMax = 0;
   }
-  grid = "";
 
   forward(steps) {
-    if (this.direction === "east") {
-      return this.position.push((this.x += steps), this.y);
-    } else if (this.direction === "south") {
-      return this.position.push(this.x, (this.y += steps));
-    } else if (this.direction === "west") {
-      return this.position.push((this.x -= steps), this.y);
-    } else {
-      return this.position.push(this.x, (this.y -= steps));
+    for (let i = 0; i < steps; i++) {
+      if (this.direction === "east") {
+        this.position.push([(this.x += 1), this.y]);
+      } else if (this.direction === "south") {
+        this.position.push([this.x, (this.y += 1)]);
+      } else if (this.direction === "west") {
+        this.position.push([(this.x -= 1), this.y]);
+      } else {
+        this.position.push([this.x, (this.y -= 1)]);
+      }
     }
+    this.xMax = Math.max(this.x, this.xMax);
+    this.yMax = Math.max(this.y, this.yMax);
+    return this;
   }
   right() {
     if (this.direction === "east") {
-      return (this.direction = "south");
+      this.direction = "south";
     } else if (this.direction === "south") {
-      return (this.direction = "west");
+      this.direction = "west";
     } else if (this.direction === "west") {
-      return (this.direction = "north");
+      this.direction = "north";
     } else {
-      return (this.direction = "east");
+      this.direction = "east";
     }
+    return this;
   }
   left() {
     if (this.direction === "east") {
-      return (this.direction = "north");
+      this.direction = "north";
     } else if (this.direction === "north") {
-      return (this.direction = "west");
+      this.direction = "west";
     } else if (this.direction === "west") {
-      return (this.direction = "south");
+      this.direction = "south";
     } else {
-      return (this.direction = "east");
+      this.direction = "east";
     }
+    return this;
   }
   allPoints() {
-    return console.log(this.position);
+    console.log(this.position);
   }
   print() {
-    let xMin = -100;
-    let xMax = 100;
-    let yMin = -100;
-    let yMax = 100;
-
-    for (let i = 0; i < x; i++) {
-      for (let j = 0; j < y; j++) {
-        if (i === this.position[(x, y)]) {
-          console.log(`■`);
-        } else {
-          console.log(`□`);
-        }
+    console.log(`--BEGIN LOG`);
+    for (let i = 0; i <= this.yMax; i++) {
+      const row = [];
+      for (let j = 0; j <= this.xMax; j++) {
+        row.push("□");
       }
+      this.grid.push(row);
     }
+    for (let [i, j] of this.position) {
+      this.grid[j][i] = "■";
+    }
+    for (let row of this.grid) [console.log(row.join(""))];
+    console.log(`--END LOG`);
   }
 }
 
-const flash = new Turtle(0, 0).forward(3);
-
-flash.allPoints();
+new Turtle(0, 4)
+  .forward(3)
+  .left()
+  .forward(3)
+  .right()
+  .forward(5)
+  .right()
+  .forward(8)
+  .right()
+  .forward(5)
+  .right()
+  .forward(3)
+  .left()
+  .forward(3)
+  .print();
