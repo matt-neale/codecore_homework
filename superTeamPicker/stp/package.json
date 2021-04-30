@@ -1,0 +1,21 @@
+{
+  "name": "stp",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "author": "Matt Neale",
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "ejs": "^3.1.6",
+    "express": "~4.16.1",
+    "knex": "^0.95.4",
+    "method-override": "^3.0.0",
+    "morgan": "~1.9.1",
+    "pg": "^8.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

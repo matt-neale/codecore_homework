@@ -1,0 +1,32 @@
+<%- include('../partials/header.ejs') %>
+<h1>Edit Cohort</h1>
+<form method="POST" action="/cohorts/<%= cohort.id %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <div class="form-group">
+    <h4>Logo Url</h4>
+    <input
+      type="url"
+      class="form-control"
+      name="imageUrl"
+      value="<%= cohort.imageUrl%>"
+    />
+  </div>
+  <div class="form-group">
+    <h4>Name</h4>
+    <input
+      type="text"
+      class="form-control"
+      name="name"
+      value="<%= cohort.name%>"
+    />
+  </div>
+
+  <div class="form-group">
+    <h4>Members</h4>
+    <textarea class="form-control" name="members" value="<%= cohort.members%>">
+<%= cohort.members%></textarea
+    >
+  </div>
+  <input type="submit" class="btn btn-outline-success" value="Submit" />
+</form>
+<%- include('../partials/footer.ejs') %>
