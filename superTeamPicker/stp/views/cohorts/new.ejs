@@ -1,0 +1,37 @@
+<%- include ("../partials/header.ejs") %>
+
+<form action="/cohorts" method="POST">
+  <div class="mb-3">
+    <label for="imageUrl" class="form-label">Logo Url</label>
+    <input
+      type="text"
+      name="imageUrl"
+      class="form-control"
+      id="imageUrl"
+      placeholder="https://example.com/some.png"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      id="name"
+      placeholder="Flying Funks"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="members" name="members" class="form-label">Content</label>
+    <textarea
+    class="form-control"
+    name="members"
+    id="members"
+    rows="5"
+    placeholder="Jon Snow, Daenerys, Melisandre, Ayra Stark"
+    ></textarea>
+    <input class="justify-content-end" type="submit" value="Submit"></input>
+  </div>
+</form>
+
+<%- include ("../partials/footer.ejs")%>

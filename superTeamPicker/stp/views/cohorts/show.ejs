@@ -1,0 +1,90 @@
+<%- include ("../partials/header.ejs") %>
+
+<div class="card">
+  <div class="card-body">
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">
+            <% if(cohort.imageUrl.length === 0) {%>
+            <div></div>
+            <% } else { %>
+            <img src="<%= cohort.imageUrl %>" alt="" />
+            <% } %> <%= cohort.name %>
+          </h4>
+          <p class="card-text"><%= cohort.members %></p>
+        </div>
+        <form method="POST" action="/cohorts/<%= cohort.id  %> ">
+          <input type="hidden" name="_method" value="DELETE" />
+          <input type="submit" class="btn btn-outline-danger" value="DELETE" />
+          <div class="d-flex">
+            <a
+              class="btn btn-outline-success mr-2"
+              href="/cohorts/<%= cohort.id %>/edit"
+              >EDIT</a
+            >
+          </div>
+        </form>
+        <hr />
+        <form>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="method"
+              id="teamCount"
+              value="teamCount"
+              checked
+            />
+            <label class="form-check-label"> Team Count </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="method"
+              id="numPerTeam"
+              value="numPerTeam"
+            />
+            <label class="form-check-label"> Number Per Team </label>
+          </div>
+          <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input
+              type="text"
+              name="quantity"
+              class="form-control"
+              id="quantity"
+              placeholder="Please input integer"
+            />
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-outline-primary">
+              Assign Teams
+            </button>
+          </div>
+        </form>
+        <% if (splitTeams.length > 0) {%>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Members</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (i = 0; i < splitTeams.length; i++) { %>
+            <tr>
+              <th scope="row"><%= i + 1 %></th>
+              <td><%= splitTeams[i] %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include ("../partials/footer.ejs")%>

@@ -1,8 +1,24 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+form {
+  padding: 0px 20px 0px 20px;
+}
+.card {
+  padding: 20px 20px 20px 20px;
+  margin: 20px;
+  width: auto;
+}
+a {
+  color: #006eff;
 }
 
-a {
-  color: #00B7FF;
+h1 {
+  padding: 30px;
+}
+
+p {
+  font-size: 20px;
+}
+
+img {
+  width: 45px;
+  height: 45px;
 }

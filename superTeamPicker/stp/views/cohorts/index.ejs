@@ -1,0 +1,29 @@
+<%- include ("../partials/header.ejs") %> <% for (let cohort of cohorts) { %>
+
+<div class="card">
+  <div class="card-body">
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">
+            <% if(cohort.imageUrl.length === 0) {%>
+            <div></div>
+            <% } else { %>
+            <img src="<%= cohort.imageUrl %>" alt="" />
+            <% } %> <%= cohort.name %>
+          </h4>
+          <p class="card-text"><%= cohort.members %></p>
+        </div>
+        <div class="d-flex">
+          <a
+            class="btn btn-outline-success mr-2"
+            href="/cohorts/<%= cohort.id%>/"
+            >Show Cohort</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% } %> <%- include ("../partials/footer.ejs")%>
