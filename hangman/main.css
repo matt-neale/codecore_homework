@@ -1,6 +1,16 @@
-body {
+.container1 {
   display: flex;
   flex-wrap: wrap;
+}
+.container2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.container3 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .letter {
@@ -12,6 +22,26 @@ body {
   border-radius: 3px;
   font-family: monospace;
   font-size: 30px;
+}
+
+.guess {
+  visibility: hidden;
+  width: 40px;
+  height: 40px;
+  margin: 3px;
+
+  font-family: monospace;
+  font-size: 30px;
+}
+
+.underline {
+  width: 40px;
+
+  margin: 3px;
+  border: 3px solid;
+  border-top: 3px;
+  border-left: 3px;
+  border-right: 3px;
 }
 
 .highlight {
