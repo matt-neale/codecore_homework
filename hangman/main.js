@@ -18,22 +18,35 @@ $(function () {
     $(".container3").append(`<div class='underline'></div>`);
   });
 
-  $("body").append(`<img src="images/gallows.jpg">`);
+  const images = [
+    `<img src="images/gallows.jpg">`,
+    `<img src="images/gallows+head.jpg">`,
+    `<img src="images/gallows+head+torso.jpg">`,
+    `<img src="images/gallows+head+torso+arm.jpg">`,
+    `<img src="images/gallows+head+torso+2leg.jpg">`,
+    `<img src="images/gallows+head+torso+2leg+arm.jpg">`,
+    `<img src="images/gallows+head+torso+2leg+2arm.jpg">`,
+  ];
+  $("body").append(images[0]);
 
-  document.querySelectorAll(".letter").forEach((letter) => {
-    letter.addEventListener("click", function () {
-      letter.classList.add("selected");
-      letter.classList.add("highlight");
-      console.log(letter.innerHTML);
+  let correctGuess = 0;
 
-      document.querySelectorAll(".guess").forEach((guess) => {
-        if (letter.innerHTML === guess.innerHTML) {
-          console.log(guess.innerHTML);
-          guess.style.visibility = "visible";
-        }
+  function hangman() {
+    document.querySelectorAll(".letter").forEach((letter) => {
+      letter.addEventListener("click", function () {
+        letter.classList.add("highlight");
+
+        document.querySelectorAll(".guess").forEach((guess) => {
+          if (letter.innerHTML === guess.innerHTML) {
+            guess.style.visibility = "visible";
+            correctGuess++;
+          } else if (correctGuess === answer.length) {
+            alert("You have won the game!");
+          }
+        });
       });
     });
-  });
+  }
 
-  function hangman() {}
+  hangman();
 });
