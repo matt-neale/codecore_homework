@@ -29,14 +29,30 @@ $(function () {
   ];
   $("body").append(images[0]);
 
-  let correctGuess = 0;
-
   function hangman() {
+    let correctGuess = 0;
+    let wrongGuess = 0;
+
     document.querySelectorAll(".letter").forEach((letter) => {
       letter.addEventListener("click", function () {
         letter.classList.add("highlight");
+        letter.classList.add("disabled");
 
-        document.querySelectorAll(".guess").forEach((guess) => {
+        console.log(letter.innerText);
+        console.log(answer);
+        if (console.log(answer.includes(letter.innerText))) {
+          console.log(wrongGuess);
+        } else if (!answer.includes(letter.innerText)) {
+          wrongGuess++;
+          $("img").remove();
+          $("body").append(images[1 * wrongGuess]);
+          console.log(wrongGuess);
+        }
+        if (wrongGuess >= 6) {
+          // tried to have this as an else if in the above statement but didn't work for some reason
+          alert("Sorry you lost this time.");
+        }
+        document.querySelectorAll(".guess").forEach((guess, i) => {
           if (letter.innerHTML === guess.innerHTML) {
             guess.style.visibility = "visible";
             correctGuess++;
