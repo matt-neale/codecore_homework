@@ -2,7 +2,7 @@ $(function () {
   $("body").append(`<div class='container1'></div>`);
   const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
   alphabet.forEach((node) => {
-    $(".container1").append(`<div class="letter"> ${node} </div>`);
+    $(".container1").append(`<button class="letter"> ${node} </button>`);
   });
 
   $("body").append(`<div class='container2'></div>`);
@@ -29,6 +29,10 @@ $(function () {
   ];
   $("body").append(images[0]);
 
+  const victory = () => new Audio(`sounds/139-item-catch.mp3`);
+
+  const failure = () => new Audio(`sounds/fail-trombone-01.wav`);
+
   function hangman() {
     let correctGuess = 0;
     let wrongGuess = 0;
@@ -36,12 +40,10 @@ $(function () {
     document.querySelectorAll(".letter").forEach((letter) => {
       letter.addEventListener("click", function () {
         letter.classList.add("highlight");
-        letter.classList.add("disabled");
+        letter.setAttribute("disabled", true);
 
-        console.log(letter.innerText);
-        console.log(answer);
-        if (console.log(answer.includes(letter.innerText))) {
-          console.log(wrongGuess);
+        if (answer.includes(letter.innerText)) {
+          console.log(wrongGuess); // I noticed that it doesn't log wrongGuess for some reason?
         } else if (!answer.includes(letter.innerText)) {
           wrongGuess++;
           $("img").remove();
@@ -49,15 +51,22 @@ $(function () {
           console.log(wrongGuess);
         }
         if (wrongGuess >= 6) {
-          // tried to have this as an else if in the above statement but didn't work for some reason
-          alert("Sorry you lost this time.");
+          // tried to have this as an else if in the above statement
+          // like the victory one but didn't work for some reason
+          failure().play();
+          setTimeout(function () {
+            alert("Sorry you lost this time.");
+          }, 250);
         }
         document.querySelectorAll(".guess").forEach((guess, i) => {
           if (letter.innerHTML === guess.innerHTML) {
             guess.style.visibility = "visible";
             correctGuess++;
           } else if (correctGuess === answer.length) {
-            alert("You have won the game!");
+            victory().play();
+            setTimeout(function () {
+              alert("You have won the game!");
+            }, 250);
           }
         });
       });
